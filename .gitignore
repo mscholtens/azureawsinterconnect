@@ -1,0 +1,41 @@
+# --- Terraform ---
+# NOTE: .terraform.lock.hcl is intentionally NOT ignored — it pins exact
+# provider versions/checksums for reproducible clones and contains no
+# secrets. Commit it (it appears after the first `terraform init`).
+**/.terraform/
+**/terraform.tfstate
+**/terraform.tfstate.*
+**/*.tfstate
+**/terraform.tfvars
+**/*.auto.tfvars
+**/*.tfplan
+**/crash.log
+**/crash.*.log
+
+# --- Runtime hand-off state ---
+# state/azure.json holds the circuit's activation key; aws.json holds IPs
+# and resource IDs. Folders are kept via .gitkeep.
+state/*
+!state/.gitkeep
+
+# --- SSH keypairs (generated fresh per run) ---
+keys/*
+!keys/.gitkeep
+*.pem
+
+# --- Screenshots / captured test output ---
+# Raw captures (ping/traceroute) contain real IPs and resource identifiers.
+# Copy reviewed screenshots elsewhere for the article instead of committing.
+screenshots/*
+!screenshots/.gitkeep
+
+# NOTE: config/credentials.env is intentionally NOT gitignored.
+# It ships with REPLACE_ME placeholders. Real values are filled in locally
+# for the duration of the experiment and MUST be reset to placeholders
+# before this repo is pushed anywhere.
+
+# --- OS/editor noise ---
+.DS_Store
+*.swp
+.vscode/
+.idea/

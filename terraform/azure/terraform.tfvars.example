@@ -1,0 +1,21 @@
+# Copy to terraform.tfvars for manual/debugging runs outside the
+# scripts. terraform.tfvars is gitignored; this .example is committed.
+#
+# scripts/01-azure-up.sh does NOT use this file — it exports TF_VAR_*
+# directly, which takes precedence over any terraform.tfvars present.
+
+azure_region         = "eastus"
+ssh_public_key_path  = "../../keys/azure-vm-key.pub"
+aws_account_id       = "123456789012"
+peering_location     = "useast" # CONFIRMED via: az network express-route list-service-providers (filtered for AWS)
+
+# --- optional overrides (defaults shown) ---
+# resource_group_name    = "interconnect-experiment-rg"
+# vnet_cidr               = "10.2.0.0/16"
+# subnet_cidr             = "10.2.1.0/24"
+# gateway_subnet_cidr     = "10.2.255.0/27"
+# vm_size                 = "Standard_D2s_v4"
+# admin_username          = "azureuser"
+# peer_cidr               = "10.0.0.0/16"  # AWS side's VPC CIDR
+# allowed_ssh_cidr        = "0.0.0.0/0"
+# circuit_bandwidth_mbps  = 1000
